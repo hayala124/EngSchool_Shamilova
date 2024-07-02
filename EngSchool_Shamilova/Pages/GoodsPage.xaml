@@ -1,0 +1,60 @@
+﻿<Page x:Class="EngSchool_Shamilova.Pages.GoodsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EngSchool_Shamilova.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Товары"
+      Style="{StaticResource base_page}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" x:Name="Goods" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Главное изображение" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Stretch="Uniform"  Height="30" HorizontalAlignment="Center" Margin="5" Source="{Binding Path=GetPhoto}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Наименование товара" Width="370" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Стоимсоть" Width="50" Binding="{Binding Price, StringFormat='c', ConverterCulture='ru-RU'}"  />
+                <DataGridTextColumn Header="Производитель" Width="50" Binding="{Binding Manufacturer.Name}" />
+                <DataGridTextColumn Header="Есть в наличии" Width="50" Binding="{Binding GetStatus}"  />
+
+                <DataGridTemplateColumn Header="Редактировать" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource borderEditAndSales}">
+                                <TextBlock Style="{StaticResource textBlockEditAndSales}"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Продажи" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource borderEditAndSales}">
+                                <TextBlock Style="{StaticResource textBlockEditAndSales}"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+           
+        </DataGrid>
+
+        <Button Content="Добавить" Grid.Row="1" HorizontalAlignment="Left" Name="BtnAdd" Click="BtnAdd_Click"/>
+        <Button Content="Удалить" Grid.Row="1" HorizontalAlignment="Right" Name="BtnDelete" Click="BtnDelete_Click"/>
+
+    </Grid>
+</Page>
